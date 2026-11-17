@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>B2 德语介词搭配核心词卡片</title>
+  <!-- 引入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入 Google Fonts: Inter 与 Noto Sans SC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* 全局基础与手机端防滚动适配 */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100dvh;
+      overflow: hidden;
+      font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #E2E8F0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    /* 隐藏横向滚动条 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* 3D 卡片翻转容器与正反面透视 */
+    .perspective-container {
+      perspective: 1200px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-style: preserve-3d;
+    }
+
+    .card-inner.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 1.5rem;
+      overflow: hidden;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* 滑动动画过渡 */
+    .swipe-transition {
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease;
+    }
+
+    /* 按钮点击微缩放反馈 */
+    .btn-press:active {
+      transform: scale(0.95);
+    }
+
+    /* 抽屉动画 */
+    .drawer-backdrop {
+      transition: opacity 0.25s ease;
+    }
+    .drawer-panel {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center bg-slate-200 text-slate-900">
+
+  <!-- 手机端主容器：桌面端居中拟物边框，移动端 100dvh 全屏 -->
+  <div id="app-shell" class="relative w-full max-w-[480px] h-[100dvh] sm:h-[94dvh] sm:max-h-[860px] bg-[#F8FAFC] sm:rounded-[2.25rem] sm:shadow-2xl sm:border sm:border-slate-300/80 flex flex-col overflow-hidden">
+
+    <!-- 顶部德国三色极细装饰线 -->
+    <div class="w-full h-1 flex shrink-0">
+      <div class="w-1/3 bg-slate-900"></div>
+      <div class="w-1/3 bg-rose-600"></div>
+      <div class="w-1/3 bg-amber-400"></div>
+    </div>
+
+    <!-- 顶部导航栏 -->
+    <header class="px-4 pt-3 pb-2 flex items-center justify-between bg-white/90 backdrop-blur-md border-b border-slate-100 shrink-0 z-10">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center font-extrabold text-xs tracking-tight shadow-sm">
+          B2
+        </div>
+        <div>
+          <h1 class="text-sm font-bold text-slate-900 leading-tight">德语介词搭配核心词</h1>
+          <div class="flex items-center gap-2 text-[11px] text-slate-500 mt-0.5">
+            <span id="header-progress-text" class="font-semibold text-slate-700">1 / 359</span>
+            <span>·</span>
+            <span id="header-mastered-count" class="text-emerald-600 font-medium">已掌握 0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧功能按钮组：自测模式 / 随机 / 词表抽屉 -->
+      <div class="flex items-center gap-1.5">
+        <button id="btn-test-mode" title="自测模式（隐藏介词提示）" class="btn-press px-2.5 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 bg-slate-50 text-slate-600 flex items-center gap-1 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          <span>自测</span>
+        </button>
+
+        <button id="btn-shuffle" title="随机打乱顺序" class="btn-press p-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition-colors" aria-label="随机打乱">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
+          </svg>
+        </button>
+
+        <button id="btn-open-drawer" title="词表与搜索" class="btn-press p-2 rounded-xl bg-slate-900 text-white shadow-sm hover:bg-slate-800 transition-colors" aria-label="打开词表">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- 进度条 -->
+    <div class="w-full h-1 bg-slate-200/70 shrink-0">
+      <div id="progress-bar" class="h-full bg-indigo-600 transition-all duration-300" style="width: 0.3%;"></div>
+    </div>
+
+    <!-- 介词分类横向滚动筛选栏 -->
+    <nav id="filter-bar" class="px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar bg-white/60 border-b border-slate-200/60 shrink-0">
+      <!-- 由 JS 动态渲染筛选胶囊 -->
+    </nav>
+
+    <!-- 中央卡片滑动舞台 -->
+    <main id="card-stage" class="relative flex-1 flex flex-col items-center justify-center px-4 py-3 overflow-hidden touch-none">
+      
+      <!-- 底层背景装饰卡片（营造牌堆立体感） -->
+      <div id="stack-card-2" class="absolute w-[84%] h-[78%] max-h-[470px] bg-white/50 rounded-3xl border border-slate-200/60 translate-y-4 scale-[0.92] pointer-events-none"></div>
+      <div id="stack-card-1" class="absolute w-[88%] h-[80%] max-h-[480px] bg-white/80 rounded-3xl border border-slate-200/80 shadow-sm translate-y-2 scale-[0.96] pointer-events-none"></div>
+
+      <!-- 滑动提示浮标：左滑下一张 / 右滑上一张 -->
+      <div id="swipe-badge-left" class="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 z-30 opacity-0 transition-opacity duration-150 bg-slate-900/85 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+        <span>下一张</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </div>
+      <div id="swipe-badge-right" class="pointer-events-none absolute left-6 top-1/2 -translate-y-1/2 z-30 opacity-0 transition-opacity duration-150 bg-slate-900/85 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        <span>上一张</span>
+      </div>
+
+      <!-- 可拖动与 3D 翻转的主卡片包装器 -->
+      <div id="draggable-card" class="relative w-full h-[84%] max-h-[500px] perspective-container z-20 cursor-grab active:cursor-grabbing">
+        <div id="card-inner" class="card-inner shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] rounded-3xl">
+          
+          <!-- ================= 卡片正面 (FRONT) ================= -->
+          <div class="card-face card-front bg-white border border-slate-200/90 flex flex-col justify-between p-5">
+            <!-- 顶部状态与发音按钮 -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span id="front-index-badge" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-500">#001</span>
+                <span id="front-status-badge" class="hidden text-[11px] font-semibold px-2.5 py-1 rounded-lg"></span>
+              </div>
+
+              <button type="button" data-action="speak" class="btn-press w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-100 flex items-center justify-center transition-colors shadow-xs" title="德语发音">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- 中央核心德语词汇展示区 -->
+            <div id="front-content" class="flex-1 flex flex-col justify-center gap-4 my-2 overflow-y-auto no-scrollbar">
+              <!-- 由 JS 动态填充 Verb / Nomen / Adjektiv -->
+            </div>
+
+            <!-- 正面底部提示区 -->
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+              <span class="flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                </svg>
+                左右滑动切换
+              </span>
+              <span class="font-medium text-indigo-500 flex items-center gap-1">
+                点击卡片翻转
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <!-- ================= 卡片背面 (BACK) ================= -->
+          <div class="card-face card-back bg-gradient-to-b from-slate-50 to-white border border-slate-200/90 flex flex-col justify-between p-5">
+            <!-- 顶部词头摘要与发音 -->
+            <div class="flex items-start justify-between gap-2 pb-3 border-b border-slate-200/70">
+              <div id="back-summary-words" class="text-xs font-semibold text-slate-500 leading-relaxed line-clamp-2">
+                <!-- 德语词头摘要 -->
+              </div>
+              <button type="button" data-action="speak" class="btn-press shrink-0 w-9 h-9 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center justify-center transition-colors" title="德语发音">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- 背面核心：介词 + 格 (Präposition + Kasus) 与中文释义 -->
+            <div class="flex-1 flex flex-col items-center justify-center text-center my-2 gap-5 overflow-y-auto no-scrollbar">
+              <div>
+                <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">介词 + 格 (Präposition + Kasus)</div>
+                <div id="back-prep-container" class="flex flex-wrap items-center justify-center gap-2">
+                  <!-- 由 JS 动态渲染高对比度颜色徽章 -->
+                </div>
+              </div>
+
+              <div class="w-12 h-0.5 bg-slate-200 rounded-full"></div>
+
+              <div class="px-2">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">中文释义</div>
+                <p id="back-meaning" class="text-xl sm:text-2xl font-bold text-slate-800 leading-snug">
+                  <!-- 中文含义 -->
+                </p>
+              </div>
+            </div>
+
+            <!-- 背面底部提示 -->
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-indigo-500"></span>+A 第四格</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>+D 第三格</span>
+              </div>
+              <span class="font-medium text-slate-500">点击翻回正面</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 空筛选状态提示 -->
+      <div id="empty-state" class="hidden flex-col items-center justify-center text-center p-6 bg-white rounded-3xl border border-slate-200 shadow-sm max-w-xs">
+        <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-slate-800 mb-1">当前分类下暂无卡片</h3>
+        <p class="text-xs text-slate-500 mb-4">您可以切换其他介词分类或返回全部词库继续学习。</p>
+        <button id="btn-reset-filter" class="btn-press px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-semibold">查看全部 (359)</button>
+      </div>
+    </main>
+
+    <!-- 底部快捷操作区：上一张 / 需复习 / 翻转 / 已掌握 / 下一张 -->
+    <footer class="px-4 pt-2 pb-4 bg-white border-t border-slate-200/80 shrink-0 z-10">
+      <div class="grid grid-cols-5 gap-2 items-center">
+        <!-- 上一张 -->
+        <button id="btn-prev" class="btn-press h-12 rounded-2xl bg-slate-100 hover:bg-slate-200/80 text-slate-700 flex flex-col items-center justify-center transition-colors" title="上一张 (←)">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- 标记需复习 -->
+        <button id="btn-mark-review" class="btn-press h-12 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-200/80 text-amber-700 flex flex-col items-center justify-center transition-colors">
+          <span class="text-xs font-bold leading-none">需复习</span>
+          <span class="text-[10px] opacity-75 mt-1">加入生词</span>
+        </button>
+
+        <!-- 翻转卡片 -->
+        <button id="btn-flip" class="btn-press h-12 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-600/20 flex flex-col items-center justify-center transition-colors">
+          <svg class="w-4 h-4 mb-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <span class="text-[10px] font-semibold leading-none">翻转</span>
+        </button>
+
+        <!-- 标记已掌握 -->
+        <button id="btn-mark-mastered" class="btn-press h-12 rounded-2xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 text-emerald-700 flex flex-col items-center justify-center transition-colors">
+          <span class="text-xs font-bold leading-none">已掌握</span>
+          <span class="text-[10px] opacity-75 mt-1">下一张</span>
+        </button>
+
+        <!-- 下一张 -->
+        <button id="btn-next" class="btn-press h-12 rounded-2xl bg-slate-100 hover:bg-slate-200/80 text-slate-700 flex flex-col items-center justify-center transition-colors" title="下一张 (→)">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </footer>
+
+    <!-- 轻量 Toast 提示框 -->
+    <div id="toast" class="pointer-events-none fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 text-white text-xs font-medium px-4 py-2 rounded-full shadow-lg opacity-0 transition-opacity duration-200">
+      提示信息
+    </div>
+
+    <!-- ================= 词表与搜索抽屉模态框 ================= -->
+    <div id="drawer-overlay" class="hidden fixed inset-0 z-40 flex justify-end">
+      <!-- 半透明遮罩 -->
+      <div id="drawer-backdrop" class="drawer-backdrop absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] opacity-0"></div>
+
+      <!-- 抽屉内容面板 -->
+      <div id="drawer-panel" class="drawer-panel relative w-full max-w-[420px] h-full bg-white shadow-2xl flex flex-col translate-x-full">
+        <!-- 抽屉头部 -->
+        <div class="px-4 py-3.5 border-b border-slate-100 flex items-center justify-between shrink-0">
+          <div>
+            <h2 class="text-base font-bold text-slate-900">词汇总览与检索</h2>
+            <p id="drawer-stats-text" class="text-xs text-slate-500 mt-0.5">共 359 条 · 已掌握 0 · 需复习 0</p>
+          </div>
+          <button id="btn-close-drawer" class="btn-press p-2 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- 搜索框与重置进度按钮 -->
+        <div class="p-3 bg-slate-50 border-b border-slate-200/70 flex flex-col gap-2 shrink-0">
+          <div class="relative">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input id="search-input" type="text" placeholder="搜索德语动词、名词、形容词、介词或中文..." class="w-full pl-9 pr-8 py-2 rounded-xl bg-white border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500" />
+            <button id="btn-clear-search" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <div class="flex items-center justify-between text-xs">
+            <span id="drawer-result-count" class="text-slate-500 font-medium">显示 359 条结果</span>
+            <button id="btn-reset-progress" class="text-rose-600 hover:text-rose-700 font-semibold px-2 py-1 rounded-lg hover:bg-rose-50 transition-colors">
+              清空学习记录
+            </button>
+          </div>
+        </div>
+
+        <!-- 词条列表滚动区 -->
+        <div id="drawer-list" class="flex-1 overflow-y-auto divide-y divide-slate-100">
+          <!-- 由 JS 动态渲染列表 -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    /**
+     * 完整的 B2 德语介词搭配核心词数据 (共 359 条)
+     * 数据结构: [Verb(动词), Nomen(名词), Adjektiv(形容词), Präposition+Kasus(介词+格), Meaning(中文释义)]
+     */
+    const VOCAB_DATA = [
+      ["abhängen","die Abhängigkeit","abhängig","von + D","依赖于...，取决于..."],
+      ["abhalten","-","-","von + D","阻止...，妨碍..."],
+      ["(sich) abmelden","die Abmeldung","-","von + D","注销...，取消...的登记"],
+      ["abraten","-","-","von + D","劝阻做..."],
+      ["achten","-","-","auf + A","注意...，重视..."],
+      ["-","die Allergie","allergisch","auf + A","对...过敏 / 对...过敏的"],
+      ["-","die Alternative","alternativ","zu + D","...的替代方案 / 作为...的替代"],
+      ["ändern","die Änderung","-","an + D","在...方面进行修改 / 改变"],
+      ["-","-","angenehm","für + A","对...感到愉快的，对...合适的"],
+      ["anfangen","der Anfang","-","mit + D","开始..."],
+      ["-","das Ansehen","angesehen","bei + D","在...中的声望 / 在...中享有声望的"],
+      ["-","-","angewiesen","auf + A","依赖于...的"],
+      ["sich ängstigen","die Angst","-","vor + D","害怕...，对...感到恐惧"],
+      ["ankommen","-","-","auf + A","取决于... (es kommt auf ... an)"],
+      ["anpassen","die Anpassung","angepasst","an + A","适应... / 适合...的"],
+      ["anrufen","der Anruf","-","bei + D","给...打电话 (常指机构、公司)"],
+      ["antworten","die Antwort","-","auf + A","回答...，对...的回答"],
+      ["antworten","-","-","mit + D","用...回答/回复"],
+      ["anwenden (angewendet werden)","die Anwendung (zur Anwendung kommen)","-","zu + D","被应用"],
+      ["-","die Anwesenheit","anwesend","bei + D","出席... / 在...在场的"],
+      ["arbeiten","die Arbeit","-","an + D / bei + D","致力于... (an) / 在...工作 (bei)"],
+      ["sich ärgern","der Ärger","ärgerlich / verärgert","über + A","对...感到生气 / 恼火的"],
+      ["-","-","arm","an + D","缺乏...的，在...方面贫乏的"],
+      ["-","die Aufgeschlossenheit","aufgeschlossen","gegenüber + D","对...开明 / 对...持开放态度的"],
+      ["aufhören","-","-","mit + D","停止做..."],
+      ["aufpassen","-","-","auf + A","照看...，注意..."],
+      ["sich aufregen / jmd. aufregen","die Aufregung (in Aufregung versetzen)","aufgeregt","über + A / in + A","对...感到激动/气愤 / 使...激动"],
+      ["sich aufregen","die Aufregung","aufgeregt","über + A","对...感到激动/气愤"],
+      ["ausdrücken","der Ausdruck (zum Ausdruck bringen)","-","mit + D / zu + D","用...表达/表达某事"],
+      ["ausgeben","die Ausgabe","-","für + A","为...花费/支出"],
+      ["ausgehen","-","-","von + D","从...出发，基于... (假设)"],
+      ["sich auskennen","-","-","mit + D","熟悉...，精通..."],
+      ["sich austauschen","der Austausch","-","mit + D / über + A","与...交流 (mit) / 交流关于... (über)"],
+      ["beantragen","der Antrag (einen Antrag stellen)","-","auf + A","申请某事"],
+      ["sich bedanken","-","-","für + A / bei + D","为... (für) 向... (bei) 道谢"],
+      ["beeindrucken","der Eindruck (Eindruck machen)","beeindruckt","auf + A","给某人留下印象"],
+      ["sich befassen","-","-","mit + D","致力于...，处理...，研究..."],
+      ["sich befinden","-","-","in + D","处于...状态/位置"],
+      ["befreien","-","frei","von + D","从...中解脱/免除 / 免于...的"],
+      ["sich begeistern","die Begeisterung","-","für + A","对...充满热情 / 热爱..."],
+      ["-","-","begeistert","von + D","对...感到兴奋/狂热的"],
+      ["beginnen","der Beginn","-","mit + D","以...开始"],
+      ["sich beklagen","die Klage","-","über + A","抱怨... / 对...的抱怨"],
+      ["beitragen","der Beitrag","-","zu + D","为...做贡献，有助于..."],
+      ["-","-","bekannt","für + A","因...而著名/众所周知"],
+      ["-","die Bekanntschaft","bekannt","mit + D","结识... / 与...熟悉的"],
+      ["-","die Beliebtheit","beliebt","bei + D","在...中受欢迎 / 受到...喜爱的"],
+      ["-","die Bereitschaft","bereit","zu + D","准备好做... / 乐意做...的"],
+      ["berichten","der Bericht","-","über + A / von + D","报告/讲述关于..."],
+      ["-","die Berühmtheit","berühmt","für + A","因...出名 / 因...著名的"],
+      ["sich beschäftigen","die Beschäftigung","beschäftigt","mit + D","忙于...，从事于..."],
+      ["sich beschweren","die Beschwerde","-","über + A / bei + D","为... (über) 向... (bei) 投诉"],
+      ["bestehen","-","-","aus + D","由...组成"],
+      ["bestehen","-","-","auf + D","坚持... (要求、观点等)"],
+      ["sich beteiligen","die Beteiligung","beteiligt","an + D","参与... / 参与了...的"],
+      ["-","die Betrachtung (in Betracht kommen)","möglich","in + A","可能的，可考虑的"],
+      ["-","die Beunruhigung","beunruhigt","über + A","对...的担忧 / 感到不安的"],
+      ["-","der Beweis","-","für + A","...的证据/证明"],
+      ["sich bewerben","die Bewerbung","-","um + A / bei + D","申请... (um) / 向...申请 (bei)"],
+      ["-","-","bezeichnend","für + A","是...的典型特征"],
+      ["sich beziehen","der Bezug (Bezug nehmen)","-","auf + A","涉及...，指的是..."],
+      ["bitten","die Bitte","-","um + A","请求得到..."],
+      ["-","-","blass","vor + D","因...而苍白 (如因恐惧/嫉妒)"],
+      ["bleiben","-","-","bei + D","坚持...，维持... (如: bei der Sache bleiben)"],
+      ["-","-","böse","auf + A","对...生气"],
+      ["bringen","-","-","zu + D","导致...，促使某人做..."],
+      ["-","-","charakteristisch","für + A","...的典型特征"],
+      ["danken","der Dank","dankbar","für + A","为...感谢 / 对...心存感激的"],
+      ["denken","der Gedanke","-","an + A","想到...，惦记..."],
+      ["diskutieren","die Diskussion","-","über + A / mit + D / zu + D","讨论关于... (über) / 与...讨论 (mit) / 被讨论"],
+      ["-","der Druck (unter Druck stehen)","gestresst (gestresst sein)","unter + D","有压力"],
+      ["-","die Eifersucht","eifersüchtig","auf + A","对...嫉妒 / 嫉妒...的"],
+      ["sich eignen","die Eignung","geeignet","für + A / zu + D","适合用于..."],
+      ["eingehen","-","-","auf + A","探讨...，对...作出回应"],
+      ["einladen","die Einladung","-","zu + D","邀请去..."],
+      ["einstellen","die Einstellung","-","auf + A","调整适应... / 对...的适应"],
+      ["-","die Einstellung","-","zu + D","对...的态度/看法"],
+      ["-","das Einverständnis","einverstanden","mit + D","赞同... / 同意...的"],
+      ["-","die Empörung","empört","über + A","对...的愤慨 / 感到愤怒的"],
+      ["sich engagieren","das Engagement","engagiert","für + A / gegen + A / bei + D","投身于... / 反对... / 在...机构致力于"],
+      ["(sich) entfernen","die Entfernung","entfernt","von + D","远离... / 与...的距离 / 遥远的"],
+      ["sich entscheiden","die Entscheidung","-","für + A / gegen + A","决定支持... / 反对..."],
+      ["-","-","entscheidend","für + A","对...起决定性作用的"],
+      ["sich entschließen","der Entschluss","entschlossen","zu + D","决定做... / 决心做...的"],
+      ["sich entschuldigen","die Entschuldigung","-","für + A / bei + D","为... (für) 向... (bei) 道歉"],
+      ["-","das Entsetzen","entsetzt","über + A","对...的惊恐 / 感到惊恐的"],
+      ["-","-","enttäuscht","von + D","对...感到失望的"],
+      ["sich entwickeln","die Entwicklung","-","zu + D","发展成..."],
+      ["-","die Erfahrung","erfahren","in + D","在...方面的经验 / 有经验的"],
+      ["-","der Erfolg","erfolgreich","in + D","在...方面的成功 / 成功的"],
+      ["sich erholen","die Erholung","erholt","von + D","从...中恢复过来"],
+      ["sich erinnern","die Erinnerung","-","an + A","回忆起...，记得..."],
+      ["erkennen","-","-","an + D","从...认出 (某人/某物)"],
+      ["sich erkundigen","die Erkundigung","-","bei + D / nach + D","向... (bei) 打听关于... (nach)"],
+      ["-","das Erstaunen","erstaunt","über + A","对...的惊讶 / 感到惊讶的"],
+      ["erwarten","-","-","von + D","期望从...处得到"],
+      ["-","die Erwartung","-","an + A / bei + D","对...的期望"],
+      ["erzählen","die Erzählung","-","über + A / von + D","讲述关于..."],
+      ["erziehen","die Erziehung","erzogen","zu + D","教育/培养成..."],
+      ["-","die Fähigkeit","fähig","zu + D","做...的能力 / 有能力做...的"],
+      ["-","-","fertig","mit + D","完成...的，结束...的"],
+      ["fliehen","die Flucht (die Flucht ergreifen)","-","vor + D","逃跑，躲避..."],
+      ["fragen","die Frage (eine Frage stellen)","-","nach + D","询问关于..."],
+      ["sich freuen","die Freude","-","auf + A","期待... (尚未发生的事)"],
+      ["sich freuen","die Freude","erfreut","über + A","为...感到高兴 (已发生的事)"],
+      ["-","die Freude","-","an + D","从...中获得的乐趣"],
+      ["-","-","freundlich","zu + D","对...友好的"],
+      ["-","die Freundschaft","befreundet","mit + D","与...的友谊 / 与...交友的"],
+      ["-","-","froh","über + A","为...感到高兴的"],
+      ["führen","-","-","zu + D","导致...，引起..."],
+      ["sich fürchten","die Furcht","-","vor + D","害怕...，恐惧..."],
+      ["gehen","-","-","um + A","涉及...，关于... (es geht um...)"],
+      ["gehören","-","-","zu + D","属于... (类别、整体的一部分)"],
+      ["-","-","geschieden","von + D","与...离婚的"],
+      ["-","-","gespannt","auf + A","对...感到期待/好奇的"],
+      ["sich gewöhnen","die Gewöhnung","gewöhnt","an + A","习惯于..."],
+      ["glauben","der Glaube","-","an + A","相信...，信仰..."],
+      ["-","die Gleichgültigkeit","gleichgültig","gegenüber + D","对...的冷漠 / 无动于衷的"],
+      ["-","-","glücklich","über + A","为...感到幸福的"],
+      ["gratulieren","die Gratulation","-","zu + D","祝贺..."],
+      ["greifen","der Griff","-","nach + D","伸手去抓..."],
+      ["-","der Grund","-","für + A","...的理由/原因"],
+      ["-","-","gut","in + D / zu + D","在...方面好 (in) / 对...好 (zu)"],
+      ["sich halten","-","-","an + A","遵守... (规定、诺言等)"],
+      ["(sich) halten","-","-","für + A","把...视为 / 认为...是"],
+      ["halten","-","-","von + D","对...有...看法 (was hältst du davon?)"],
+      ["-","die Haltung","-","zu + D","对...的态度/立场"],
+      ["handeln","-","-","von + D","关于...，涉及...内容"],
+      ["handeln","der Handel","-","mit + D","做...的生意，交易..."],
+      ["sich handeln","-","-","um + A","关系到...，涉及... (es handelt sich um)"],
+      ["-","das Heimweh","-","nach + D","对...的思乡之情"],
+      ["helfen","die Hilfe","behilflich/hilfreich","bei + D","在...方面提供帮助 / 有帮助的"],
+      ["-","die Hilfe","-","für + A","给...的帮助"],
+      ["hinweisen","der Hinweis","-","auf + A","提示，指出..."],
+      ["hoffen","die Hoffnung","-","auf + A","希望..."],
+      ["sich informieren","die Information","informiert","über + A","了解关于...的信息 / 知情的"],
+      ["sich interessieren","das Interesse","-","für + A","对...感兴趣"],
+      ["-","das Interesse","interessiert","an + D","对...的参与感/兴趣 / 感兴趣的"],
+      ["investieren","die Investition","-","in + A","投资于..."],
+      ["kämpfen","der Kampf","-","für + A / gegen + A","为...而战 (für) / 反对...而战 (gegen)"],
+      ["klarkommen","-","-","mit + D","与...相处融洽，能应付..."],
+      ["klingen","der Klang","-","nach + D","听起来像..."],
+      ["sich konzentrieren","die Konzentration","konzentriert","auf + A","专注于..."],
+      ["kritisieren","die Kritik (Kritik üben)","-","an + D","批评某人"],
+      ["sich kümmern","-","-","um + A","照顾...，关心...，负责..."],
+      ["lachen","-","-","über + A","嘲笑...，因...而笑"],
+      ["leiden","-","-","an + D / unter + D","患...病 (an) / 忍受...痛苦 (unter)"],
+      ["-","die Liebe","lieb","zu + D","对...的爱 / 对...亲切的"],
+      ["liegen","-","-","an + D","原因在于... (es liegt an ...)"],
+      ["-","die Lust","-","auf + A","对...的兴趣/兴致"],
+      ["-","das Misstrauen","misstrauisch","gegenüber + D","对...的不信任 / 怀疑的"],
+      ["motivieren","die Motivation","motiviert","zu + D","激励做... / 有动力的"],
+      ["-","-","müde","von + D","因...而疲劳的，对...厌倦的"],
+      ["nachdenken","-","-","über + A","思考...，沉思..."],
+      ["nachfragen","-","-","bei + D","向...询问，打听"],
+      ["-","die Nachricht","-","von + D","关于...的消息"],
+      ["naschen","-","-","von + D","品尝点...，偷吃点..."],
+      ["-","der Neid","neidisch","auf + A","对...嫉妒 / 嫉妒...的"],
+      ["-","die Neugier","neugierig","auf + A","对...感到好奇 / 好奇的"],
+      ["-","-","nett","zu + D","对...友好的"],
+      ["-","die Notwendigkeit","notwendig","für + A","对...的必要性 / 必要的"],
+      ["-","der Nutzen","nützlich","für + A","对...的益处 / 有用的"],
+      ["-","die Offenheit","offen","für + A","对...的开放态度 / 坦率的"],
+      ["sich orientieren","die Orientierung","-","an + D","以...为导向，按照..."],
+      ["passen","-","-","zu + D","与...相配/适合"],
+      ["passieren","-","-","mit + D","发生在...身上 (was passiert mit...)"],
+      ["protestieren","der Protest","-","gegen + A","抗议..."],
+      ["raten","der Rat","-","zu + D","建议做..."],
+      ["reagieren","die Reaktion","-","auf + A","对...作出反应"],
+      ["reden","-","-","mit + D","与...交谈"],
+      ["reden","die Rede","-","von + D / über + A","谈论关于..."],
+      ["-","der Reichtum","reich","an + D","富有...的，在...方面丰富的"],
+      ["retten","die Rettung","-","vor + D","从...中拯救/解救"],
+      ["sich richten","-","-","nach + D","视...而定，听从..."],
+      ["riechen","der Geruch","-","nach + D","闻起来像... / ...的气味"],
+      ["-","die Rolle (eine große Rolle spielen)","relevant (sehr relevant sein)","-","非常重要"],
+      ["-","-","sauer","auf + A","对...生气的"],
+      ["-","der Schaden","schädlich","für + A","对...的损害 / 有害的"],
+      ["-","-","scharf","auf + A","对...狂热的，极度渴望...的"],
+      ["schimpfen","-","-","über + A / mit + D","抱怨... (über) / 责骂... (mit)"],
+      ["schmecken","der Geschmack","-","nach + D","有...味道 / ...的味道"],
+      ["schreiben","-","-","an + A","写信给..."],
+      ["schreiben","-","-","über + A","写关于..."],
+      ["-","die Schuld","schuld","an + D","对...有过错/责任 / 负有责任的"],
+      ["sich sehnen","die Sehnsucht","-","nach + D","渴望... / 对...的渴望"],
+      ["sichern","die Sicherheit","sicher","vor + D","保护免受... / 安全的"],
+      ["siegen","der Sieg","siegreich","über + A","战胜... / 胜利的"],
+      ["-","die Skepsis","skeptisch","gegenüber + D","对...持怀疑态度 / 怀疑的"],
+      ["sorgen","-","-","für + A","负责...，照料..."],
+      ["sich sorgen","die Sorge","besorgt","um + A","为...担忧 / 担心的"],
+      ["sich spezialisieren","die Spezialisierung","spezialisiert","auf + A","专攻... / 专门从事...的"],
+      ["sprechen","das Gespräch","-","über + A / mit + D / von + D","谈论... / 与...交谈 / 提及..."],
+      ["sprechen","-","-","für + A","支持...，为...说话"],
+      ["stehen","-","-","für + A","代表..."],
+      ["sterben","-","-","an + D","死于... (疾病等)"],
+      ["-","der Stolz","stolz","auf + A","对...的骄傲 / 感到自豪的"],
+      ["(sich) streiten","der Streit","-","über + A / um + A / mit + D","就...争吵 (über/um) / 与...争吵 (mit)"],
+      ["suchen","die Suche","-","nach + D","寻找..."],
+      ["-","die Tätigkeit","tätig","als","作为... (职业/活动)"],
+      ["tauschen","der Tausch","-","gegen + A / mit + D","换成... (gegen) / 与...交换 (mit)"],
+      ["teilnehmen","die Teilnahme","-","an + D","参加..."],
+      ["tendieren","die Tendenz","-","zu + D","倾向于..."],
+      ["trauern","die Trauer","traurig","über + A","为...哀悼/悲伤"],
+      ["träumen","der Traum","-","von + D","梦见...，梦想..."],
+      ["sich treffen","das Treffen","-","mit + D","与...会面"],
+      ["sich trennen","die Trennung","getrennt","von + D","与...分离/分手"],
+      ["-","-","typisch","für + A","是...典型的"],
+      ["-","-","überrascht","von + D","被...惊讶到的 (被动意味)"],
+      ["-","die Überraschung","überrascht","über + A","对...感到惊讶 / 惊讶的"],
+      ["überreden","die Überredung","-","zu + D","说服某人去做..."],
+      ["(sich) überzeugen","-","überzeugt","von + D","确信...，使信服..."],
+      ["umgehen","der Umgang","-","mit + D","应对...，对待...，与...打交道"],
+      ["unterbrechen","die Unterbrechung","-","bei + D","在...时打断"],
+      ["sich unterhalten","die Unterhaltung","-","über + A / mit + D","谈论关于... / 与...聊天"],
+      ["unterrichten","-","-","in + D","在...方面教授/授课"],
+      ["unterrichten","-","-","von + D","将...通知某人"],
+      ["untersuchen","die Untersuchung (Untersuchungen anstellen)","-","-","调查"],
+      ["(sich) unterscheiden","die Unterscheidung","unterscheidbar","nach + D","依...区分 / 可区分的"],
+      ["sich unterscheiden","-","-","in + D","在...方面有区别"],
+      ["sich unterscheiden","-","-","von + D","与...不同"],
+      ["unterstützen","die Unterstützung","-","bei + D","在...方面支持/帮助"],
+      ["sich verabreden","die Verabredung","verabredet","mit + D","与...约会 / 约好的"],
+      ["sich verabschieden","die Verabschiedung","-","von + D","向...告别"],
+      ["-","die Verantwortung","verantwortlich","für + A","对...负责 / 负责任的"],
+      ["verbinden","die Verbindung","verbunden","mit + D","与...联系起来 / 相连的"],
+      ["vergleichen","der Vergleich","vergleichbar","mit + D","与...比较 / 可比较的"],
+      ["-","-","verheiratet","mit + D","与...结婚的"],
+      ["verlangen","-","-","von + D","要求... (从某人处)"],
+      ["sich verlassen","-","-","auf + A","依靠...，信赖..."],
+      ["sich verlieben","die Verliebtheit","verliebt","in + A","爱上... / 迷恋的"],
+      ["sich verpflichten","die Verpflichtung","verpflichtet","zu + D","承诺做...，有义务做..."],
+      ["-","-","verrückt","nach + D","对...疯狂/狂热的"],
+      ["-","-","verschieden","von + D","与...不同的"],
+      ["verstehen","das Verständnis","-","von + D","懂得...，了解..."],
+      ["-","das Verständnis","-","für + A","对...的谅解/理解"],
+      ["sich verstecken","-","-","vor + D","躲避..."],
+      ["sich verstehen","-","-","mit + D","与...相处融洽"],
+      ["vertrauen","das Vertrauen","-","auf + A","信任...，依赖..."],
+      ["-","die Verwandtschaft","verwandt","mit + D","与...有亲属关系 / 相关的"],
+      ["sich verwandeln","-","-","in + A","变成...，转化为..."],
+      ["verweisen","der Verweis","-","auf + A","提及...，指向..."],
+      ["verzichten","der Verzicht","-","auf + A","放弃..."],
+      ["-","-","voll","von + D","充满...的"],
+      ["sich vorbereiten","die Vorbereitung","vorbereitet","auf + A","为...做准备 / 准备好的"],
+      ["-","die Vorstellung","-","von + D","对...的想象/概念"],
+      ["warnen","die Warnung","-","vor + D","警告不要...，提防..."],
+      ["warten","-","-","auf + A","等待..."],
+      ["werben","die Werbung","-","für + A","为...做广告/宣传"],
+      ["wetten","die Wette","-","um + A","拿...打赌"],
+      ["-","die Wichtigkeit","wichtig","für + A","对...的重要性 / 重要的"],
+      ["wirken","die Wirkung","-","auf + A","作用于...，对...产生影响"],
+      ["-","der Wunsch","-","nach + D","对...的愿望/渴望"],
+      ["-","die Wut","wütend","auf + A","对...的愤怒 / 感到愤怒的"],
+      ["sich wundern","die Verwunderung","verwundert","über + A","对...感到惊讶"],
+      ["zählen","-","-","zu + D","属于...之列，算作..."],
+      ["-","das Zeichen","-","für + A","...的标志/迹象"],
+      ["-","die Zeit","-","für + A","做...的时间"],
+      ["-","die Zufriedenheit","zufrieden","mit + D","对...满意 / 满意的"],
+      ["-","die Zurückhaltung","zurückhaltend","gegenüber + D","对...有所保留/克制的"],
+      ["-","die Zuständigkeit","zuständig","für + A","负责...的，主管的"],
+      ["zweifeln","der Zweifel","-","an + D","怀疑..."],
+      ["zwingen","der Zwang","-","zu + D","强迫去做... / 做...的强制力"],
+      ["denken","der Gedanke","-","an + A","想到，思考"],
+      ["(sich) erinnern","die Erinnerung","-","an + A","回忆起，提醒"],
+      ["glauben","der Glaube","-","an + A","相信"],
+      ["(sich) gewöhnen","die Gewöhnung","gewöhnt","an + A","习惯于"],
+      ["(sich) wenden","-","-","an + A","转向，求助于"],
+      ["schreiben","das Schreiben","-","an + A","写信给"],
+      ["fragen","die Frage","-","an + A","向...提问"],
+      ["anfragen","die Anfrage","-","an + A / von + D","向...询问 / 来自...的询问"],
+      ["arbeiten","die Arbeit","-","an + D","在...上工作，致力于"],
+      ["teilnehmen","die Teilnahme","-","an + D","参加"],
+      ["-","das Interesse","interessiert","an + D","对...有兴趣 (动词见 für+A)"],
+      ["bedürfen","der Bedarf","-","an + D","对...的需求"],
+      ["kritisieren","die Kritik","kritisch","an + D","对...的批评"],
+      ["(sich) beteiligen","die Beteiligung","beteiligt","an + D","参与"],
+      ["-","die Schuld","schuldig","an + D","对...有罪/有错"],
+      ["-","die Armut","arm","an + D","在...方面贫乏"],
+      ["-","der Reichtum","reich","an + D","在...方面富有"],
+      ["warten","das Warten / die Erwartung","-","auf + A","等待"],
+      ["achten","die Achtung","achtsam","auf + A","注意"],
+      ["(sich) freuen","die Freude","erfreut","auf + A","期待（未发生的事）"],
+      ["hoffen","die Hoffnung","hoffnungsvoll","auf + A","希望"],
+      ["(sich) vorbereiten","die Vorbereitung","vorbereitet","auf + A","为...做准备"],
+      ["reagieren","die Reaktion","-","auf + A","对...做出反应"],
+      ["hinweisen","der Hinweis","-","auf + A","提示，指出"],
+      ["(sich) beziehen","der Bezug","bezogen","auf + A","涉及，与...有关"],
+      ["verzichten","der Verzicht","-","auf + A","放弃"],
+      ["antworten","die Antwort","-","auf + A","对...的回答"],
+      ["beeinflussen","der Einfluss","-","auf + A","对...的影响"],
+      ["-","die Lust","-","auf + A / zu + D","对...的兴趣 / 渴望做某事"],
+      ["-","die Neugier","neidisch","auf + A","对...好奇"],
+      ["-","der Stolz","stolz","auf + A","对...感到骄傲"],
+      ["-","der Neid","neidisch","auf + A","对...嫉妒"],
+      ["anweisen","die Anweisung","angewiesen","auf + A","依赖于"],
+      ["bestehen","das Bestehen","-","auf + D / A","坚持，坚决要求"],
+      ["bestehen","-","-","aus + D","由...组成"],
+      ["helfen","die Hilfe","hilfreich","bei + D","在...方面帮助"],
+      ["(sich) interessieren","-","-","für + A","对...感兴趣 (名/形见 an+D)"],
+      ["(sich) entscheiden","die Entscheidung","entschlossen","für + A","决定选择"],
+      ["sorgen","die Sorge","-","für + A","照顾，负责"],
+      ["(sich) bedanken","der Dank","dankbar","für + A","为...感谢"],
+      ["(sich) entschuldigen","die Entschuldigung","-","für + A","为...道歉"],
+      ["halten","-","-","für + A","认为...是"],
+      ["verantworten","die Verantwortung","verantwortlich","für + A","为...负责"],
+      ["begründen","der Grund","grundlegend","für + A","...的原因/理由"],
+      ["-","die Zuständigkeit","zuständig","für + A","负责，主管"],
+      ["-","die Bekanntheit","bekannt / berühmt","für + A","因...而出名"],
+      ["-","-","typisch","für + A","对...是典型的"],
+      ["-","der Vorteil","vorteilhaft","gegenüber + D","相比...的优势"],
+      ["(sich) verlieben","die Verliebtheit","verliebt","in + A","爱上"],
+      ["investieren","die Investition","-","in + A","投资于"],
+      ["(sich) einmischen","die Einmischung","-","in + A","干涉，插手"],
+      ["anfangen","der Anfang","-","mit + D","开始"],
+      ["aufhören","-","-","mit + D","停止"],
+      ["beginnen","der Beginn","-","mit + D","开始"],
+      ["(sich) beschäftigen","die Beschäftigung","beschäftigt","mit + D","忙于，从事于"],
+      ["rechnen","die Rechnung","-","mit + D","考虑到，指望"],
+      ["umgehen","der Umgang","-","mit + D","对待，处理"],
+      ["vergleichen","der Vergleich","vergleichbar","mit + D","与...比较"],
+      ["-","die Zufriedenheit","zufrieden","mit + D","对...满意"],
+      ["-","das Einverständnis","einverstanden","mit + D","同意"],
+      ["nachfragen","die Nachfrage","-","nach + D","对...的需求"],
+      ["fragen","die Frage","-","nach + D","询问..."],
+      ["suchen","die Suche","-","nach + D","寻找..."],
+      ["sprechen","das Gespräch","-","über + A","谈论"],
+      ["nachdenken","das Nachdenken","-","über + A","思考"],
+      ["diskutieren","die Diskussion","-","über + A","讨论"],
+      ["(sich) freuen","die Freude","erfreut","über + A","对...感到高兴（已发生）"],
+      ["(sich) ärgern","der Ärger","verärgert","über + A","对...感到生气"],
+      ["klagen","die Klage","-","über + A","抱怨"],
+      ["(sich) wundern","das Wunder","verwundert","über + A","对...感到惊讶"],
+      ["berichten","der Bericht","-","über + A","报道"],
+      ["verfügen","die Verfügung","-","über + A","支配，拥有"],
+      ["überblicken","der Überblick","-","über + A","对...的概览/全貌"],
+      ["bitten","die Bitte","-","um + A","请求"],
+      ["(sich) bewerben","die Bewerbung","-","um + A","申请"],
+      ["(sich) kümmern","-","-","um + A","照顾，关心"],
+      ["(sich) handeln / gehen","-","-","um + A","关于，涉及 (Es geht/handelt sich um)"],
+      ["abhängen","die Abhängigkeit","abhängig","von + D","依赖于，取决于"],
+      ["(sich) erholen","die Erholung","erholt","von + D","从...中恢复"],
+      ["handeln","die Handlung","-","von + D","内容关于..."],
+      ["träumen","der Traum","-","von + D","梦见"],
+      ["überzeugen","die Überzeugung","überzeugt","von + D","确信，说服"],
+      ["erzählen","die Erzählung","-","von + D","讲述"],
+      ["begeistern","die Begeisterung","begeistert","von + D","对...充满热情"],
+      ["grüßen","der Gruß (die Grüße)","-","von + D / aus + D","来自...的问候"],
+      ["(sich) ängstigen","die Angst","ängstlich","vor + D","害怕..."],
+      ["beitragen","der Beitrag","-","zu + D","贡献，有助于"],
+      ["gehören","die Zugehörigkeit","-","zu + D","属于"],
+      ["führen","die Führung","-","zu + D","导致"],
+      ["neigen","die Neigung","geneigt","zu + D","倾向于"],
+      ["passen","-","passend","zu + D","与...相配，适合"],
+      ["(sich) entschließen","der Entschluss","entschlossen","zu + D","决定做..."],
+      ["einladen","die Einladung","-","zu + D","邀请"],
+      ["(sich) beziehen","die Beziehung","-","zu + D","与...的关系"],
+      ["bereiten","die Bereitschaft","bereit","zu + D","准备好做..."],
+      ["befähigen","die Fähigkeit","fähig","zu + D","有能力做..."],
+      ["unterscheiden","der Unterschied","unterschiedlich","zwischen + D","...之间的区别"]
+    ];
+
+    // 将原始数据转换为带唯一 ID 的对象数组
+    const ALL_ITEMS = VOCAB_DATA.map((row, idx) => ({
+      id: idx,
+      verb: row[0],
+      noun: row[1],
+      adj: row[2],
+      prep: row[3],
+      meaning: row[4]
+    }));
+
+    // 本地存储 Key
+    const STORAGE_KEY = 'b2_german_prep_flashcards_v1';
+
+    // 应用状态
+    let state = {
+      activeFilter: 'ALL',
+      filteredItems: [...ALL_ITEMS],
+      currentIndex: 0,
+      isFlipped: false,
+      isShuffled: false,
+      testMode: false, // 自测模式：正面不显示提示，仅展示核心词
+      masteredIds: new Set(),
+      reviewIds: new Set(),
+      searchQuery: ''
+    };
+
+    // 预设介词筛选项
+    const FILTER_OPTIONS = [
+      { key: 'ALL', label: '全部' },
+      { key: 'REVIEW', label: '⭐ 需复习' },
+      { key: 'auf + A', label: 'auf + A' },
+      { key: 'von + D', label: 'von + D' },
+      { key: 'mit + D', label: 'mit + D' },
+      { key: 'über + A', label: 'über + A' },
+      { key: 'für + A', label: 'für + A' },
+      { key: 'an + D', label: 'an + D' },
+      { key: 'an + A', label: 'an + A' },
+      { key: 'zu + D', label: 'zu + D' },
+      { key: 'bei + D', label: 'bei + D' },
+      { key: 'vor + D', label: 'vor + D' },
+      { key: 'in + D/A', label: 'in + D/A' },
+      { key: 'um + A', label: 'um + A' },
+      { key: 'nach + D', label: 'nach + D' },
+      { key: 'gegenüber + D', label: 'gegenüber + D' },
+      { key: 'OTHER', label: '其他' }
+    ];
+
+    const PRIMARY_PREPS = [
+      'auf + A', 'von + D', 'mit + D', 'über + A', 'für + A',
+      'an + D', 'an + A', 'zu + D', 'bei + D', 'vor + D',
+      'um + A', 'nach + D', 'gegenüber + D'
+    ];
+
+    // DOM 引用
+    const els = {
+      filterBar: document.getElementById('filter-bar'),
+      headerProgress: document.getElementById('header-progress-text'),
+      headerMastered: document.getElementById('header-mastered-count'),
+      progressBar: document.getElementById('progress-bar'),
+      draggableCard: document.getElementById('draggable-card'),
+      cardInner: document.getElementById('card-inner'),
+      stackCard1: document.getElementById('stack-card-1'),
+      stackCard2: document.getElementById('stack-card-2'),
+      emptyState: document.getElementById('empty-state'),
+      frontIndexBadge: document.getElementById('front-index-badge'),
+      frontStatusBadge: document.getElementById('front-status-badge'),
+      frontContent: document.getElementById('front-content'),
+      backSummaryWords: document.getElementById('back-summary-words'),
+      backPrepContainer: document.getElementById('back-prep-container'),
+      backMeaning: document.getElementById('back-meaning'),
+      swipeBadgeLeft: document.getElementById('swipe-badge-left'),
+      swipeBadgeRight: document.getElementById('swipe-badge-right'),
+      btnTestMode: document.getElementById('btn-test-mode'),
+      btnShuffle: document.getElementById('btn-shuffle'),
+      toast: document.getElementById('toast'),
+      // Drawer
+      drawerOverlay: document.getElementById('drawer-overlay'),
+      drawerBackdrop: document.getElementById('drawer-backdrop'),
+      drawerPanel: document.getElementById('drawer-panel'),
+      drawerStatsText: document.getElementById('drawer-stats-text'),
+      drawerResultCount: document.getElementById('drawer-result-count'),
+      drawerList: document.getElementById('drawer-list'),
+      searchInput: document.getElementById('search-input'),
+      btnClearSearch: document.getElementById('btn-clear-search')
+    };
+
+    /**
+     * 从 localStorage 加载学习进度
+     */
+    function loadProgress() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed.masteredIds)) {
+            state.masteredIds = new Set(parsed.masteredIds);
+          }
+          if (Array.isArray(parsed.reviewIds)) {
+            state.reviewIds = new Set(parsed.reviewIds);
+          }
+          if (typeof parsed.testMode === 'boolean') {
+            state.testMode = parsed.testMode;
+          }
+        }
+      } catch (e) {
+        console.warn('读取本地进度失败:', e);
+      }
+    }
+
+    /**
+     * 保存学习进度到 localStorage
+     */
+    function saveProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          masteredIds: Array.from(state.masteredIds),
+          reviewIds: Array.from(state.reviewIds),
+          testMode: state.testMode
+        }));
+      } catch (e) {
+        console.warn('保存本地进度失败:', e);
+      }
+    }
+
+    /**
+     * 显示轻提示 Toast
+     */
+    let toastTimer = null;
+    function showToast(msg) {
+      els.toast.textContent = msg;
+      els.toast.classList.remove('opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        els.toast.classList.add('opacity-0');
+      }, 1600);
+    }
+
+    /**
+     * 判断某条词条是否匹配指定筛选条件
+     */
+    function matchesFilter(item, filterKey) {
+      if (filterKey === 'ALL') return true;
+      if (filterKey === 'REVIEW') return state.reviewIds.has(item.id);
+      if (filterKey === 'in + D/A') {
+        return item.prep.includes('in + D') || item.prep.includes('in + A');
+      }
+      if (filterKey === 'OTHER') {
+        const isPrimary = PRIMARY_PREPS.some(p => item.prep.includes(p)) ||
+                          item.prep.includes('in + D') ||
+                          item.prep.includes('in + A');
+        return !isPrimary;
+      }
+      return item.prep.includes(filterKey);
+    }
+
+    /**
+     * 应用筛选与可选随机乱序
+     */
+    function applyFilter(filterKey, preserveIndex = false) {
+      state.activeFilter = filterKey;
+      let list = ALL_ITEMS.filter(item => matchesFilter(item, filterKey));
+
+      if (state.isShuffled) {
+        list = shuffleArray([...list]);
+      }
+
+      state.filteredItems = list;
+      if (!preserveIndex) {
+        state.currentIndex = 0;
+      } else if (state.currentIndex >= list.length) {
+        state.currentIndex = Math.max(0, list.length - 1);
+      }
+
+      state.isFlipped = false;
+      els.cardInner.classList.remove('is-flipped');
+
+      renderFilterBar();
+      renderCurrentCard();
+    }
+
+    /**
+     * Fisher-Yates 洗牌算法
+     */
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    /**
+     * 渲染顶部介词筛选胶囊栏
+     */
+    function renderFilterBar() {
+      els.filterBar.innerHTML = '';
+      FILTER_OPTIONS.forEach(opt => {
+        const count = ALL_ITEMS.filter(item => matchesFilter(item, opt.key)).length;
+        const isActive = state.activeFilter === opt.key;
+
+        const btn = document.createElement('button');
+        btn.className = `btn-press shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 ${
+          isActive
+            ? 'bg-slate-900 text-white shadow-xs'
+            : 'bg-white text-slate-600 border border-slate-200/90 hover:bg-slate-100'
+        }`;
+        btn.innerHTML = `<span>${opt.label}</span><span class="text-[10px] ${isActive ? 'text-slate-300' : 'text-slate-400'}">${count}</span>`;
+        btn.addEventListener('click', () => {
+          applyFilter(opt.key, false);
+          // 自动将激活的胶囊滚入视野
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        });
+        els.filterBar.appendChild(btn);
+      });
+    }
+
+    /**
+     * 高亮德语名词定冠词 der / die / das
+     */
+    function formatGermanNounHTML(nounStr) {
+      if (!nounStr || nounStr === '-') return '';
+      return nounStr.replace(/\b(der|die|das)\b/g, (match) => {
+        let colorClass = 'text-indigo-600 bg-indigo-50';
+        if (match === 'die') colorClass = 'text-rose-600 bg-rose-50';
+        if (match === 'das') colorClass = 'text-emerald-600 bg-emerald-50';
+        return `<span class="inline-block px-1.5 py-0.5 rounded-md text-sm font-bold ${colorClass} mr-1">${match}</span>`;
+      });
+    }
+
+    /**
+     * 渲染介词 + 格的高对比度色彩标签
+     */
+    function renderPrepBadgesHTML(prepStr) {
+      if (!prepStr || prepStr === '-') {
+        return `<span class="px-4 py-2 rounded-2xl bg-slate-200 text-slate-700 font-bold text-lg">无固定介词</span>`;
+      }
+
+      // 拆解如 "über + A / mit + D" 的复合项
+      const parts = prepStr.split('/').map(s => s.trim());
+      return parts.map(part => {
+        let styleClass = 'bg-slate-800 text-white border-slate-700';
+        if (part.includes('+ A') && !part.includes('+ D')) {
+          styleClass = 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/20';
+        } else if (part.includes('+ D') && !part.includes('+ A')) {
+          styleClass = 'bg-emerald-600 text-white border-emerald-500 shadow-md shadow-emerald-600/20';
+        } else if (part.includes('+ D') && part.includes('+ A')) {
+          styleClass = 'bg-purple-600 text-white border-purple-500 shadow-md shadow-purple-600/20';
+        }
+        return `<span class="px-5 py-2.5 rounded-2xl border text-2xl sm:text-3xl font-extrabold tracking-tight ${styleClass}">${part}</span>`;
+      }).join('');
+    }
+
+    /**
+     * 渲染当前主卡片与顶部进度状态
+     */
+    function renderCurrentCard() {
+      const total = state.filteredItems.length;
+      els.headerMastered.textContent = `已掌握 ${state.masteredIds.size}`;
+
+      // 同步自测按钮样式
+      if (state.testMode) {
+        els.btnTestMode.className = 'btn-press px-2.5 py-1.5 rounded-xl text-xs font-semibold border border-indigo-600 bg-indigo-600 text-white flex items-center gap-1 transition-colors shadow-xs';
+      } else {
+        els.btnTestMode.className = 'btn-press px-2.5 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 bg-slate-50 text-slate-600 flex items-center gap-1 transition-colors';
+      }
+
+      // 同步随机按钮样式
+      if (state.isShuffled) {
+        els.btnShuffle.className = 'btn-press p-2 rounded-xl border border-indigo-200 bg-indigo-50 text-indigo-600 transition-colors';
+      } else {
+        els.btnShuffle.className = 'btn-press p-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition-colors';
+      }
+
+      if (total === 0) {
+        els.draggableCard.classList.add('hidden');
+        els.stackCard1.classList.add('hidden');
+        els.stackCard2.classList.add('hidden');
+        els.emptyState.classList.remove('hidden');
+        els.emptyState.classList.add('flex');
+        els.headerProgress.textContent = '0 / 0';
+        els.progressBar.style.width = '0%';
+        return;
+      }
+
+      els.draggableCard.classList.remove('hidden');
+      els.stackCard1.classList.remove('hidden');
+      els.stackCard2.classList.remove('hidden');
+      els.emptyState.classList.add('hidden');
+      els.emptyState.classList.remove('flex');
+
+      const item = state.filteredItems[state.currentIndex];
+      const currentNum = state.currentIndex + 1;
+      els.headerProgress.textContent = `${currentNum} / ${total}`;
+      els.progressBar.style.width = `${(currentNum / total) * 100}%`;
+
+      // 正面编号与掌握状态徽章
+      els.frontIndexBadge.textContent = `#${String(item.id + 1).padStart(3, '0')}`;
+      if (state.masteredIds.has(item.id)) {
+        els.frontStatusBadge.textContent = '✓ 已掌握';
+        els.frontStatusBadge.className = 'text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200/70';
+      } else if (state.reviewIds.has(item.id)) {
+        els.frontStatusBadge.textContent = '★ 需复习';
+        els.frontStatusBadge.className = 'text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 border border-amber-200/70';
+      } else {
+        els.frontStatusBadge.className = 'hidden';
+      }
+
+      // 构建正面词性模块
+      let frontBlocks = [];
+
+      if (item.verb && item.verb !== '-') {
+        frontBlocks.push(`
+          <div class="bg-slate-50/90 border border-slate-200/60 rounded-2xl p-3.5">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Verb · 动词</span>
+            </div>
+            <div class="text-2xl sm:text-[26px] font-extrabold text-slate-900 leading-snug break-words">${item.verb}</div>
+          </div>
+        `);
+      }
+
+      if (item.noun && item.noun !== '-') {
+        frontBlocks.push(`
+          <div class="bg-slate-50/90 border border-slate-200/60 rounded-2xl p-3.5">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Nomen · 名词</span>
+            </div>
+            <div class="text-lg sm:text-xl font-bold text-slate-800 leading-snug break-words">${formatGermanNounHTML(item.noun)}</div>
+          </div>
+        `);
+      }
+
+      if (item.adj && item.adj !== '-') {
+        frontBlocks.push(`
+          <div class="bg-slate-50/90 border border-slate-200/60 rounded-2xl p-3.5">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Adjektiv · 形容词</span>
+            </div>
+            <div class="text-lg sm:text-xl font-bold text-slate-800 leading-snug break-words">${item.adj}</div>
+          </div>
+        `);
+      }
+
+      // 自测模式下在正面底部添加引导提问
+      if (state.testMode) {
+        frontBlocks.push(`
+          <div class="mt-1 py-2 px-3 rounded-xl bg-indigo-50/80 border border-indigo-100 text-center text-xs font-semibold text-indigo-700">
+            🤔 自测中：请回忆对应的「介词 + 格」与中文含义
+          </div>
+        `);
+      }
+
+      els.frontContent.innerHTML = frontBlocks.join('');
+
+      // 背面顶部词头摘要
+      const summaryParts = [item.verb, item.noun, item.adj].filter(v => v && v !== '-');
+      els.backSummaryWords.textContent = summaryParts.join(' · ');
+
+      // 背面介词 + 格
+      els.backPrepContainer.innerHTML = renderPrepBadgesHTML(item.prep);
+
+      // 背面中文释义
+      els.backMeaning.textContent = item.meaning;
+    }
+
+    /**
+     * 使用 Web Speech API (de-DE) 朗读当前德语词条
+     */
+    function speakCurrentItem() {
+      if (state.filteredItems.length === 0) return;
+      const item = state.filteredItems[state.currentIndex];
+
+      // 清理括号补充说明，使朗读更自然
+      const cleanWord = (str) => {
+        if (!str || str === '-') return '';
+        return str.replace(/\(.*?\)/g, '').replace(/\//g, ', ').trim();
+      };
+
+      const parts = [cleanWord(item.verb), cleanWord(item.noun), cleanWord(item.adj)].filter(Boolean);
+      const textToSpeak = parts.join('. ');
+
+      if (!('speechSynthesis' in window)) {
+        showToast('当前浏览器不支持语音朗读');
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utterance.lang = 'de-DE';
+      utterance.rate = 0.92;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    /**
+     * 翻转当前卡片
+     */
+    function flipCard() {
+      if (state.filteredItems.length === 0) return;
+      state.isFlipped = !state.isFlipped;
+      els.cardInner.classList.toggle('is-flipped', state.isFlipped);
+    }
+
+    /**
+     * 切换到下一张或上一张，带滑出滑入过渡动画
+     * @param {number} direction 1 表示下一张(左滑), -1 表示上一张(右滑)
+     */
+    let isAnimatingCard = false;
+    function navigateCard(direction) {
+      const total = state.filteredItems.length;
+      if (total <= 1 || isAnimatingCard) {
+        if (total === 1) showToast('当前分类仅有一张卡片');
+        return;
+      }
+
+      isAnimatingCard = true;
+      const exitX = direction === 1 ? -320 : 320;
+      const exitRotate = direction === 1 ? -14 : 14;
+
+      els.draggableCard.classList.add('swipe-transition');
+      els.draggableCard.style.transform = `translate3d(${exitX}px, 16px, 0) rotate(${exitRotate}deg)`;
+      els.draggableCard.style.opacity = '0';
+
+      setTimeout(() => {
+        // 更新索引并重置为正面
+        state.currentIndex = (state.currentIndex + direction + total) % total;
+        state.isFlipped = false;
+        els.cardInner.classList.remove('is-flipped');
+
+        // 瞬间将卡片移到入场起点
+        els.draggableCard.classList.remove('swipe-transition');
+        const enterX = direction === 1 ? 80 : -80;
+        els.draggableCard.style.transform = `translate3d(${enterX}px, 0, 0) scale(0.96)`;
+        els.draggableCard.style.opacity = '0';
+
+        renderCurrentCard();
+
+        // 强制重排后执行平滑入场
+        void els.draggableCard.offsetWidth;
+        els.draggableCard.classList.add('swipe-transition');
+        els.draggableCard.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
+        els.draggableCard.style.opacity = '1';
+
+        setTimeout(() => {
+          els.draggableCard.classList.remove('swipe-transition');
+          isAnimatingCard = false;
+        }, 320);
+      }, 220);
+    }
+
+    /**
+     * 标记当前卡片为“已掌握”或“需复习”
+     */
+    function markCardStatus(status) {
+      if (state.filteredItems.length === 0) return;
+      const item = state.filteredItems[state.currentIndex];
+
+      if (status === 'mastered') {
+        state.masteredIds.add(item.id);
+        state.reviewIds.delete(item.id);
+        saveProgress();
+        renderFilterBar();
+        showToast('✓ 已标记为掌握');
+        if (state.filteredItems.length > 1) {
+          navigateCard(1);
+        } else {
+          renderCurrentCard();
+        }
+      } else if (status === 'review') {
+        state.reviewIds.add(item.id);
+        state.masteredIds.delete(item.id);
+        saveProgress();
+        renderFilterBar();
+        showToast('★ 已加入需复习列表');
+        if (state.filteredItems.length > 1) {
+          navigateCard(1);
+        } else {
+          renderCurrentCard();
+        }
+      }
+    }
+
+    /**
+     * 绑定手势拖动（支持触摸 Touch 与桌面鼠标 Mouse Drag）
+     */
+    function initCardGestures() {
+      let startX = 0;
+      let startY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let isDragging = false;
+      let hasMoved = false;
+
+      const onPointerDown = (clientX, clientY, target) => {
+        // 如果点击的是发音按钮，不启动拖动
+        if (target.closest('[data-action="speak"]')) return;
+        if (isAnimatingCard || state.filteredItems.length === 0) return;
+
+        isDragging = true;
+        hasMoved = false;
+        startX = clientX;
+        startY = clientY;
+        currentX = 0;
+        currentY = 0;
+        els.draggableCard.classList.remove('swipe-transition');
+      };
+
+      const onPointerMove = (clientX, clientY) => {
+        if (!isDragging) return;
+        currentX = clientX - startX;
+        currentY = clientY - startY;
+
+        if (Math.abs(currentX) > 6 || Math.abs(currentY) > 6) {
+          hasMoved = true;
+        }
+
+        // 限制垂直阻尼并计算倾斜角度
+        const dampY = currentY * 0.25;
+        const rotateDeg = currentX * 0.045;
+        els.draggableCard.style.transform = `translate3d(${currentX}px, ${dampY}px, 0) rotate(${rotateDeg}deg)`;
+
+        // 显示左右滑动指示浮标
+        if (currentX < -45) {
+          els.swipeBadgeLeft.style.opacity = Math.min(1, (-currentX - 45) / 60);
+          els.swipeBadgeRight.style.opacity = '0';
+        } else if (currentX > 45) {
+          els.swipeBadgeRight.style.opacity = Math.min(1, (currentX - 45) / 60);
+          els.swipeBadgeLeft.style.opacity = '0';
+        } else {
+          els.swipeBadgeLeft.style.opacity = '0';
+          els.swipeBadgeRight.style.opacity = '0';
+        }
+      };
+
+      const onPointerUp = (target) => {
+        if (!isDragging) return;
+        isDragging = false;
+        els.swipeBadgeLeft.style.opacity = '0';
+        els.swipeBadgeRight.style.opacity = '0';
+
+        // 若几乎未拖动，则视为点击 -> 翻转卡片
+        if (!hasMoved) {
+          els.draggableCard.style.transform = '';
+          if (!target.closest('[data-action="speak"]')) {
+            flipCard();
+          }
+          return;
+        }
+
+        const threshold = 75;
+        if (currentX < -threshold) {
+          // 向左滑 -> 下一张
+          navigateCard(1);
+        } else if (currentX > threshold) {
+          // 向右滑 -> 上一张
+          navigateCard(-1);
+        } else {
+          // 未达到阈值，弹性回弹至中心
+          els.draggableCard.classList.add('swipe-transition');
+          els.draggableCard.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
+        }
+      };
+
+      // Touch 事件
+      els.draggableCard.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          onPointerDown(e.touches[0].clientX, e.touches[0].clientY, e.target);
+        }
+      }, { passive: true });
+
+      els.draggableCard.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches.length === 1) {
+          onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+
+      els.draggableCard.addEventListener('touchend', (e) => {
+        onPointerUp(e.target);
+      });
+
+      // Mouse 事件（兼容桌面测试）
+      els.draggableCard.addEventListener('mousedown', (e) => {
+        onPointerDown(e.clientX, e.clientY, e.target);
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          onPointerMove(e.clientX, e.clientY);
+        }
+      });
+
+      window.addEventListener('mouseup', (e) => {
+        if (isDragging) {
+          onPointerUp(e.target);
+        }
+      });
+
+      // 卡片内所有发音按钮点击事件
+      els.draggableCard.addEventListener('click', (e) => {
+        const speakBtn = e.target.closest('[data-action="speak"]');
+        if (speakBtn) {
+          e.stopPropagation();
+          speakCurrentItem();
+        }
+      });
+    }
+
+    /**
+     * 打开/关闭词表检索抽屉
+     */
+    function openDrawer() {
+      renderDrawerList();
+      els.drawerOverlay.classList.remove('hidden');
+      void els.drawerOverlay.offsetWidth;
+      els.drawerBackdrop.classList.remove('opacity-0');
+      els.drawerPanel.classList.remove('translate-x-full');
+    }
+
+    function closeDrawer() {
+      els.drawerBackdrop.classList.add('opacity-0');
+      els.drawerPanel.classList.add('translate-x-full');
+      setTimeout(() => {
+        els.drawerOverlay.classList.add('hidden');
+      }, 300);
+    }
+
+    /**
+     * 渲染抽屉内的词条搜索列表
+     */
+    function renderDrawerList() {
+      const q = state.searchQuery.trim().toLowerCase();
+      els.drawerStatsText.textContent = `共 ${ALL_ITEMS.length} 条 · 已掌握 ${state.masteredIds.size} · 需复习 ${state.reviewIds.size}`;
+
+      const results = ALL_ITEMS.filter(item => {
+        if (!q) return true;
+        return (
+          item.verb.toLowerCase().includes(q) ||
+          item.noun.toLowerCase().includes(q) ||
+          item.adj.toLowerCase().includes(q) ||
+          item.prep.toLowerCase().includes(q) ||
+          item.meaning.toLowerCase().includes(q)
+        );
+      });
+
+      els.drawerResultCount.textContent = `显示 ${results.length} 条结果`;
+
+      if (results.length === 0) {
+        els.drawerList.innerHTML = `
+          <div class="p-8 text-center text-sm text-slate-400">
+            未找到匹配的德语词条或释义
+          </div>
+        `;
+        return;
+      }
+
+      const html = results.map(item => {
+        const titleParts = [item.verb, item.noun, item.adj].filter(v => v && v !== '-');
+        const isMastered = state.masteredIds.has(item.id);
+        const isReview = state.reviewIds.has(item.id);
+
+        let statusDot = '';
+        if (isMastered) statusDot = '<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" title="已掌握"></span>';
+        else if (isReview) statusDot = '<span class="w-2 h-2 rounded-full bg-amber-500 shrink-0" title="需复习"></span>';
+
+        const prepColor = item.prep.includes('+ A') && !item.prep.includes('+ D')
+          ? 'bg-indigo-50 text-indigo-700 border-indigo-200/70'
+          : item.prep.includes('+ D') && !item.prep.includes('+ A')
+          ? 'bg-emerald-50 text-emerald-700 border-emerald-200/70'
+          : 'bg-purple-50 text-purple-700 border-purple-200/70';
+
+        return `
+          <button type="button" data-jump-id="${item.id}" class="w-full text-left px-4 py-3 hover:bg-slate-50 active:bg-slate-100 transition-colors flex items-start justify-between gap-3">
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[11px] font-mono text-slate-400">#${String(item.id + 1).padStart(3, '0')}</span>
+                ${statusDot}
+                <span class="text-sm font-bold text-slate-900 truncate">${titleParts.join(' · ')}</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-1 line-clamp-1">${item.meaning}</p>
+            </div>
+            <span class="shrink-0 px-2 py-1 rounded-lg border text-[11px] font-bold ${prepColor}">
+              ${item.prep}
+            </span>
+          </button>
+        `;
+      }).join('');
+
+      els.drawerList.innerHTML = html;
+    }
+
+    /**
+     * 绑定全部按钮与键盘事件
+     */
+    function initControls() {
+      document.getElementById('btn-prev').addEventListener('click', () => navigateCard(-1));
+      document.getElementById('btn-next').addEventListener('click', () => navigateCard(1));
+      document.getElementById('btn-flip').addEventListener('click', flipCard);
+      document.getElementById('btn-mark-mastered').addEventListener('click', () => markCardStatus('mastered'));
+      document.getElementById('btn-mark-review').addEventListener('click', () => markCardStatus('review'));
+
+      document.getElementById('btn-reset-filter').addEventListener('click', () => applyFilter('ALL', false));
+
+      // 自测模式切换
+      els.btnTestMode.addEventListener('click', () => {
+        state.testMode = !state.testMode;
+        saveProgress();
+        renderCurrentCard();
+        showToast(state.testMode ? '已开启自测模式' : '已关闭自测模式');
+      });
+
+      // 随机乱序切换
+      els.btnShuffle.addEventListener('click', () => {
+        state.isShuffled = !state.isShuffled;
+        applyFilter(state.activeFilter, false);
+        showToast(state.isShuffled ? '已打乱当前词卡顺序' : '已恢复原始词表顺序');
+      });
+
+      // 抽屉开关
+      document.getElementById('btn-open-drawer').addEventListener('click', openDrawer);
+      document.getElementById('btn-close-drawer').addEventListener('click', closeDrawer);
+      els.drawerBackdrop.addEventListener('click', closeDrawer);
+
+      // 搜索输入
+      els.searchInput.addEventListener('input', (e) => {
+        state.searchQuery = e.target.value;
+        els.btnClearSearch.classList.toggle('hidden', !state.searchQuery);
+        renderDrawerList();
+      });
+
+      els.btnClearSearch.addEventListener('click', () => {
+        state.searchQuery = '';
+        els.searchInput.value = '';
+        els.btnClearSearch.classList.add('hidden');
+        renderDrawerList();
+        els.searchInput.focus();
+      });
+
+      // 点击抽屉中的某个词条直接跳转
+      els.drawerList.addEventListener('click', (e) => {
+        const itemBtn = e.target.closest('[data-jump-id]');
+        if (!itemBtn) return;
+        const targetId = Number(itemBtn.getAttribute('data-jump-id'));
+
+        // 若当前筛选中不包含该词条，自动切回全部
+        let idx = state.filteredItems.findIndex(it => it.id === targetId);
+        if (idx === -1) {
+          state.activeFilter = 'ALL';
+          state.isShuffled = false;
+          state.filteredItems = [...ALL_ITEMS];
+          idx = state.filteredItems.findIndex(it => it.id === targetId);
+          renderFilterBar();
+        }
+
+        state.currentIndex = Math.max(0, idx);
+        state.isFlipped = false;
+        els.cardInner.classList.remove('is-flipped');
+        renderCurrentCard();
+        closeDrawer();
+      });
+
+      // 清空学习记录（二次点击确认，避免使用 confirm()）
+      let resetConfirmPending = false;
+      let resetConfirmTimer = null;
+      const btnResetProgress = document.getElementById('btn-reset-progress');
+      btnResetProgress.addEventListener('click', () => {
+        if (!resetConfirmPending) {
+          resetConfirmPending = true;
+          btnResetProgress.textContent = '再次点击确认清空';
+          btnResetProgress.classList.add('bg-rose-600', 'text-white');
+          btnResetProgress.classList.remove('text-rose-600');
+          resetConfirmTimer = setTimeout(() => {
+            resetConfirmPending = false;
+            btnResetProgress.textContent = '清空学习记录';
+            btnResetProgress.classList.remove('bg-rose-600', 'text-white');
+            btnResetProgress.classList.add('text-rose-600');
+          }, 3000);
+        } else {
+          clearTimeout(resetConfirmTimer);
+          resetConfirmPending = false;
+          btnResetProgress.textContent = '清空学习记录';
+          btnResetProgress.classList.remove('bg-rose-600', 'text-white');
+          btnResetProgress.classList.add('text-rose-600');
+
+          state.masteredIds.clear();
+          state.reviewIds.clear();
+          saveProgress();
+          renderFilterBar();
+          renderCurrentCard();
+          renderDrawerList();
+          showToast('已清空所有学习进度');
+        }
+      });
+
+      // 键盘方向键与空格支持
+      window.addEventListener('keydown', (e) => {
+        if (document.activeElement === els.searchInput) return;
+        if (!els.drawerOverlay.classList.contains('hidden')) {
+          if (e.key === 'Escape') closeDrawer();
+          return;
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          navigateCard(1);
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          navigateCard(-1);
+        } else if (e.key === ' ') {
+          e.preventDefault();
+          flipCard();
+        }
+      });
+    }
+
+    // 启动初始化
+    window.addEventListener('DOMContentLoaded', () => {
+      loadProgress();
+      initCardGestures();
+      initControls();
+      applyFilter('ALL', false);
+    });
+  </script>
+</body>
+</html>
